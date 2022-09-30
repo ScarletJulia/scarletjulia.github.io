@@ -5,5 +5,5 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 #
 layout: default
-title: Portifólio - John de Lara
+title: Portifólio - Scarlet Júlia
 ---
