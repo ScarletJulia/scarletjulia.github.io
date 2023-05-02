@@ -5,7 +5,7 @@ author: scarletjulia # You :P
 description: > # Meta description of Homepage
   Neste portfólio você poderá acompanhar meus projetos, análises e estudos relacionado à Ciência de Dados,
     aplicação de Machine Learning, entre outros.
-baseurl: "/portfolioweb" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://scarletjulia.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
 # SEO PLUGIN
