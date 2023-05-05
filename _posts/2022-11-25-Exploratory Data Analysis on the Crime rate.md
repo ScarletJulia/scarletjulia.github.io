@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "In this Data Science Project we will do some Exploratory Data Analysis on the Crime rate of the city in California, San Francisco."
+title: "San Francisco Crimes"
 featured-img: object_detection
 categories: [Data Analysis]
 ---
