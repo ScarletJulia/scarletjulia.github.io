@@ -4,15 +4,11 @@ title: "Projetando Preços: Previsão de Valores de Carros Usados usando Regress
 featured-img:
 categories: [Machine Learning, Data Analysis, Python, Linear Regression, Random Forest]
 ---
-Aqui, vamos explorar um dos mercados mais dinâmicos e emocionantes do Brasil: o mercado de anúncios de carros usados. Se você já se perguntou por que os preços dos veículos usados variam tanto e o que influencia essas flutuações, então este é o lugar certo para entender.
-O mercado de carros usados no Brasil é imenso e diversificado, com milhões de veículos sendo vendidos e comprados todos os anos. É um setor que atrai tanto compradores em busca de boas ofertas como vendedores buscando maximizar o valor de seus automóveis.
+Neste projeto, o objetivo é analisar o mercado de anúncios de carros usados no Brasil, que é dinâmico e diversificado, com milhões de veículos sendo vendidos e comprados anualmente. O desafio é entender as flutuações de preços e os fatores que as influenciam, como a economia, oferta e demanda.
 
-No entanto, com uma ampla variedade de marcas, modelos, idades e condições, estabelecer um preço justo para um carro usado pode ser um desafio tanto para quem vende quanto para quem compra. Além disso, fatores externos, como a economia, a oferta e a demanda, também desempenham papéis cruciais na determinação dos valores.
+Para enfrentar esse desafio, o projeto utiliza técnicas avançadas de machine learning e regressão para desenvolver um modelo preciso capaz de prever os preços dos carros usados. Ao longo do desenvolvimento, são exploradas as etapas do processo de aprendizado de máquina, destacando a importância dos dados de treinamento. O resultado final é uma poderosa ferramenta que pode beneficiar tanto compradores quanto vendedores de carros usados.
 
-Aqui, apresentaremos um projeto empolgante baseado em machine learning e regressão que visa desvendar esse intrigante mercado de anúncios de carros usados. Utilizando técnicas avançadas de aprendizado de máquina, vamos desenvolver um modelo capaz de prever os preços dos veículos usados com precisão, levando em consideração diversos fatores que influenciam nesse processo.
-
-Ao longo deste projeto, mergulharemos nas etapas do desenvolvimento, explorando as nuances do machine learning, a importância dos dados de treinamento e como o modelo resultante pode ser uma ferramenta poderosa para compradores e vendedores de carros usados.
-O projeto foi oferecido pela empresa Indicium, como um desafio na área de Ciência de Dados, desenvolvido e entregue no prazo de 7 dias.
+O projeto foi oferecido pela empresa Indicium como um desafio na área de Ciência de Dados e foi concluído dentro de um prazo de 7 dias.
 
 > *Neste [Notebook](https://github.com/scarletjulia/Lighthouse_Indicium/blob/main/LH_CD_SCARLET_JULIA.ipynb) está toda minha análise e os tratamentos realizados.
 
