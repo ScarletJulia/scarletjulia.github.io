@@ -60,6 +60,7 @@ teste = pd.read_csv('/home/bloom/Downloads/cars_test.csv', delimiter='\t', encod
 | max      | 21.000000 | 2022.000000       | 2023.000000| 381728.000000| 4.000000   | NaN              |
 
 ### Respondendo 3 questões de negócios:
+
 #### a) Qual o melhor estado cadastrado na base de dados para se vender um carro de marca popular e por quê?
 
 
@@ -88,7 +89,51 @@ São Paulo foi considerado o melhor estado para compra de picapes automáticas. 
 
 Minas Gerais (MG) destaca-se no cenário nacional, posicionando-se entre os 25% dos estados com maior volume de carros que ainda detêm garantia de fábrica. Este indicativo sugere uma preferência ou tendência do mercado mineiro em adquirir carros novos ou recentemente lançados, refletindo possivelmente a confiança dos consumidores na aquisição de veículos com garantias de fábrica, uma vez que essas garantias geralmente são indicativos de confiabilidade e segurança na compra.
 
+#### Hipóteses de negócio
 
+#### a) Influência do Ano de Fabricação no Preço:
+
+Veículos mais novos tendem a ter preços mais altos em comparação com os mais antigos. Especificamente, carros fabricados a partir de 2018 (mediana do ano de fabricação) podem ter um preço significativamente mais alto do que os fabricados antes desse ano. Justificativa: Normalmente, carros mais novos possuem características e tecnologias mais atualizadas, maior eficiência no consumo de combustível, menos desgaste e, em muitos casos, ainda estão sob garantia, o que pode justificar preços mais elevados.
+
+{% highlight python %} X = sm.add_constant(treino['ano_de_fabricacao'])
+
+model = sm.OLS(treino['preco'], X).fit()
+
+print(model.summary()) {% endhighlight %}
+
+OLS Regression Results
+==============================================================================
+Dep. Variable:                  preco   R-squared:                       0.057
+Model:                            OLS   Adj. R-squared:                  0.057
+Method:                 Least Squares   F-statistic:                     1795.
+Date:                Sun, 23 Jul 2023   Prob (F-statistic):               0.00
+Time:                        20:54:57   Log-Likelihood:            -3.7571e+05
+No. Observations:               29584   AIC:                         7.514e+05
+Df Residuals:                   29582   BIC:                         7.514e+05
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+const             -9.563e+06   2.29e+05    -41.784      0.000      -1e+07   -9.11e+06
+ano_de_fabricacao  4807.8364    113.484     42.366      0.000    4585.403    5030.270
+==============================================================================
+Omnibus:                    15778.592   Durbin-Watson:                   2.012
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           214866.631
+Skew:                           2.263   Prob(JB):                         0.00
+Kurtosis:                      15.402   Cond. No.                     1.00e+06
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large,  1e+06. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+Resultado: O ano de fabricação tem uma relação positiva e estatisticamente significativa com o preço. No entanto, ele explica apenas 5,7% da variabilidade do preço. Além disso, a análise sugere a presença de outliers e potencial multicolinearidade, o que pode impactar a confiabilidade do modelo.
+
+#### b) Impacto do histórico de Manutenção no Preço:
+
+Veículos que passaram por revisões na concessionária e têm todas as suas revisões dentro da agenda são vendidos a preços mais elevados do que aqueles que não têm um histórico de manutenção claro. Justificativa: Revisões em concessionárias e manutenções programadas geralmente são vistas como indicadores de que o veículo foi bem cuidado. Compradores podem estar dispostos a pagar mais por carros que têm um histórico claro de manutenção, pois isso sugere que o carro pode ter menos problemas no futuro.
 
 
 
