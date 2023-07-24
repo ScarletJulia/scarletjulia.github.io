@@ -203,7 +203,190 @@ fig.show() {% endhighlight %}
 
 ![corr](https://drive.google.com/uc?export=view&id=1ARrM3iiuIADEmNKEHPFSjzcXfgfvc0vj)
 
+### Modelo Baseline
 
+{% highlight python %} df_numeric = df.select_dtypes(exclude=['object'])
+
+# Selecionando as colunas para avaliar
+features = list(df_numeric.columns)
+features.remove('preco')  # Removendo 'preco' da lista
+
+# Preparando os dados
+X = df.query("Origem == 'treino'")[features]
+y = df.query("Origem == 'treino'")['preco'] {% endhighlight %}
+
+
+{% highlight python %} %%time
+models = [
+    ('Linear Regression', LinearRegression()),
+    ('Random Forest', RandomForestRegressor(n_estimators=100, random_state=0)),
+    ('Gradient Boosting', GradientBoostingRegressor(random_state=0)),
+    ('SVR', SVR()),
+    ('Decision Tree', DecisionTreeRegressor()),
+    ('Ridge Regression', Ridge()),
+    ('Lasso Regression', Lasso()),
+    ('ElasticNet Regression', ElasticNet()),
+    ('KNN', KNeighborsRegressor()),
+    ('XGBoost', XGBRegressor(random_state=0)),
+    ('LightGBM', LGBMRegressor(random_state=0)),
+    ('AdaBoost', AdaBoostRegressor(random_state=0))  
+]
+
+scoring = {
+    'rmse': make_scorer(lambda y, y_pred: mean_squared_error(y, y_pred, squared=False)),
+    'mae': make_scorer(mean_absolute_error),
+    'r2': make_scorer(r2_score)
+}
+
+results = {}
+for name, model in models:
+    results.update(evaluate_model(X, y, model, name))
+
+for metric, values in results.items():
+    print(f"{metric}: {values.mean()} +/- {values.std()}") {% endhighlight %}
+
+Abaixo estão os resultados de avaliação para vários modelos de regressão (baseline):
+
+Linear Regression
+
+    Fit Time: 0.054 +/- 0.019 seconds
+    Score Time: 0.008 +/- 0.004 seconds
+    Test RMSE: 71510.43 +/- 1629.10
+    Test MAE: 51897.31 +/- 194.46
+    Test R2: 0.233 +/- 0.013
+
+Random Forest
+
+    Fit Time: 6.956 +/- 0.137 seconds
+    Score Time: 0.149 +/- 0.007 seconds
+    Test RMSE: 69727.78 +/- 1230.40
+    Test MAE: 49928.68 +/- 625.62
+    Test R2: 0.270 +/- 0.027
+
+Gradient Boosting
+
+    Fit Time: 1.801 +/- 0.051 seconds
+    Score Time: 0.012 +/- 0.003 seconds
+    Test RMSE: 65766.41 +/- 1582.93
+    Test MAE: 47402.39 +/- 191.97
+    Test R2: 0.351 +/- 0.014
+
+SVR (Support Vector Regression)
+
+    Fit Time: 24.792 +/- 0.469 seconds
+    Score Time: 5.769 +/- 0.089 seconds
+    Test RMSE: 83346.04 +/- 1822.11
+    Test MAE: 57001.75 +/- 445.60
+    Test R2: -0.042 +/- 0.003
+
+Decision Tree
+
+    Fit Time: 0.122 +/- 0.006 seconds
+    Score Time: 0.004 +/- 0.0001 seconds
+    Test RMSE: 91477.49 +/- 1273.23
+    Test MAE: 64093.99 +/- 527.74
+    Test R2: -0.257 +/- 0.040
+
+Ridge Regression
+
+    Fit Time: 0.036 +/- 0.004 seconds
+    Score Time: 0.005 +/- 0.001 seconds
+    Test RMSE: 71510.35 +/- 1628.71
+    Test MAE: 51897.23 +/- 194.02
+    Test R2: 0.233 +/- 0.013
+
+Lasso Regression
+
+    Fit Time: 0.054 +/- 0.007 seconds
+    Score Time: 0.005 +/- 0.001 seconds
+    Test RMSE: 71510.43 +/- 1628.94
+    Test MAE: 51897.26 +/- 194.19
+    Test R2: 0.233 +/- 0.013
+
+ElasticNet Regression
+
+    Fit Time: 0.044 +/- 0.002 seconds
+    Score Time: 0.005 +/- 0.001 seconds
+    Test RMSE: 74292.49 +/- 1690.93
+    Test MAE: 54207.42 +/- 201.98
+    Test R2: 0.172 +/- 0.006
+
+KNN (K-Nearest Neighbors)
+
+    Fit Time: 0.028 +/- 0.005 seconds
+    Score Time: 0.151 +/- 0.044 seconds
+    Test RMSE: 82438.66 +/- 1836.55
+    Test MAE: 59781.15 +/- 612.73
+    Test R2: -0.020 +/- 0.010
+
+XGBoost
+
+    Fit Time: 0.864 +/- 0.070 seconds
+    Score Time: 0.008 +/- 0.003 seconds
+    Test RMSE: 65131.68 +/- 1083.52
+    Test MAE: 46442.43 +/- 300.36
+    Test R2: 0.363 +/- 0.016
+
+LightGBM
+
+    Fit Time: 0.115 +/- 0.005 seconds
+    Score Time: 0.011 +/- 0.001 seconds
+    Test RMSE: 64112.48 +/- 1297.37
+    Test MAE: 45886.71 +/- 254.28
+    Test R2: 0.383 +/- 0.017
+
+AdaBoost
+
+    Fit Time: 0.729 +/- 0.147 seconds
+    Score Time: 0.018 +/- 0.003 seconds
+    Test RMSE: 119815.81 +/- 21529.08
+    Test MAE: 104369.18 +/- 21372.15
+    Test R2: -1.241 +/- 0.796
+
+### Resultados do modelo:
+
+{% highlight python %} %%time
+features = list(df_numeric.columns)
+features.remove('preco')  
+
+X = df_dummies.query("Origem == 'treino'")[features]
+y = df_dummies.query("Origem == 'treino'")['preco']
+
+y = np.log(y)
+
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+
+X_train.columns = [col.replace(" ", "_") for col in X_train.columns]
+X_val.columns = [col.replace(" ", "_") for col in X_val.columns]
+X_train = X_train.fillna(0)
+y_train = y_train.fillna(0)
+X_val = X_val.fillna(0)
+
+model = LGBMRegressor(random_state=0, force_col_wise=True)
+model.fit(X_train, y_train.ravel())
+
+y_pred_train = model.predict(X_train)
+y_pred_val = model.predict(X_val)
+
+y_pred_train = np.exp(y_pred_train)
+y_pred_val = np.exp(y_pred_val)
+
+y_train = np.exp(y_train)
+y_val = np.exp(y_val)
+
+print("Train Set Evaluation:")
+print(f"RMSE: {mean_squared_error(y_train, y_pred_train, squared=False)}")
+print(f"MAE: {mean_absolute_error(y_train, y_pred_train)}")
+print(f"R2: {r2_score(y_train, y_pred_train)}")
+
+print("Validation Set Evaluation:")
+print(f"RMSE: {mean_squared_error(y_val, y_pred_val, squared=False)}")
+print(f"MAE: {mean_absolute_error(y_val, y_pred_val)}")
+print(f"R2: {r2_score(y_val, y_pred_val)}")
+
+std_dev = np.std(y_pred_val)
+
+print(f'Standard Deviation of predictions: {std_dev}') {% endhighlight %}
 
 
 
