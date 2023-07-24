@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Projetando Preços: Previsão de Valores de Carros Usados usando Regressão"
-featured-img:
+featured-img: carros_usados
 categories: [Machine Learning, Data Analysis, Python, Linear Regression, Random Forest]
 ---
 Neste projeto, o objetivo é analisar o mercado de anúncios de carros usados no Brasil, que é dinâmico e diversificado, com milhões de veículos sendo vendidos e comprados anualmente. O desafio é entender as flutuações de preços e os fatores que as influenciam, como a economia, oferta e demanda.
