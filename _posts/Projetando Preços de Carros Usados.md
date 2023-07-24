@@ -65,9 +65,30 @@ teste = pd.read_csv('/home/bloom/Downloads/cars_test.csv', delimiter='\t', encod
 
 ![carros_populares_por_estado](https://drive.google.com/uc?export=view&id=1RabD-ZTcA-__0CZqZnhMkDyaZoPLaAZM)
 
-https://drive.google.com/uc?export=view&id=SEU_ID_DA_IMAGEM
 
-![boxplot_preco_pop_estado](https://drive.google.com/file/d/19-A0l1lymTHrSzC0auYv2lY9B0R6Wsbu/view?usp=drive_link)
+![boxplot_preco_pop_estado](https://drive.google.com/uc?export=view&id=19-A0l1lymTHrSzC0auYv2lY9B0R6Wsbu)
+
+São Paulo possui a maior quantidade de carros populares anunciados para venda comparado a outros estados presentes na base de dados. A alta oferta pode ser um grande atrativo para pessoas interessadas em uma variedade ampla de opções. O preço médio dos carros populares em São Paulo é relativamente alto em comparação com outros estados, o que permite um melhor retorno financeiro. No cálculo do Índice de Desempenho, São Paulo teve o resultado mais alto dentre todos os estados com 0.739091, o que garante boa combinação de oferta (quantidade de carros anunciados) e demanda (preço médio relativamente alto).
+
+#### b) Qual o melhor estado para se comprar uma picape com transmissão automática e por quê?
+
+![boxplot_preco_picape_estado](https://drive.google.com/uc?export=view&id=1-BzcCnqnQFQUiuDbTVIdmBMUwZzM6Gky)
+
+
+![boxplot_preco_medio_picape_estado](https://drive.google.com/uc?export=view&id=1TUHOlOIxGWISmh28FOa0jpBKfOirEg6I)
+
+
+![boxplot_mediana_preco_picape_estado](https://drive.google.com/uc?export=view&id=10PljUGL0ibDQGJAtKoPPUJmCkrlo0qJF)
+
+São Paulo foi considerado o melhor estado para compra de picapes automáticas. Com o preço médio aproximado de 188.427,48, fica em posição entre tods os estados porém se destaca potencialmente porque possui oferta significativa com 1712 unidades disponíveis, levando a uma competitivade de preços e variedade de escolha, fatores benéficos para compradores.
+
+#### c) Qual o melhor estado para se comprar carros que ainda estejam dentro da garantia de fábrica e por quê?
+
+![carros_preco_medio_estado](https://drive.google.com/uc?export=view&id=196eA9oiipCukIpcUBmxgIz_Moyz10ins)
+
+Minas Gerais (MG) destaca-se no cenário nacional, posicionando-se entre os 25% dos estados com maior volume de carros que ainda detêm garantia de fábrica. Este indicativo sugere uma preferência ou tendência do mercado mineiro em adquirir carros novos ou recentemente lançados, refletindo possivelmente a confiança dos consumidores na aquisição de veículos com garantias de fábrica, uma vez que essas garantias geralmente são indicativos de confiabilidade e segurança na compra.
+
+
 
 
 
