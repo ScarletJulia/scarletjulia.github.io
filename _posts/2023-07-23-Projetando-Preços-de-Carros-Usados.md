@@ -135,6 +135,78 @@ Resultado: O ano de fabricação tem uma relação positiva e estatisticamente s
 
 Veículos que passaram por revisões na concessionária e têm todas as suas revisões dentro da agenda são vendidos a preços mais elevados do que aqueles que não têm um histórico de manutenção claro. Justificativa: Revisões em concessionárias e manutenções programadas geralmente são vistas como indicadores de que o veículo foi bem cuidado. Compradores podem estar dispostos a pagar mais por carros que têm um histórico claro de manutenção, pois isso sugere que o carro pode ter menos problemas no futuro.
 
+![impacto_rev_concess_preco](https://drive.google.com/uc?export=view&id=1olnNMFrR6lGHHrSRBCzBFbq4Nni3IeGY)
+
+
+![impacto_rev_agenda_preco](https://drive.google.com/uc?export=view&id=1kLDYar3I7AI0t3soqNkKx8pcp3jqiTgV)
+
+Análise de revisões em concessionária:
+
+Mediana (Valor Central)
+
+Sem Revisão: 105.42k
+Com Revisão: 136.21k
+
+Há uma diferença notável na mediana dos preços entre os dois grupos. Os carros com revisões em concessionárias possuem uma mediana 30.79k maior, indicando que o valor central dos carros revisados em concessionárias tende a ser mais elevado.
+
+Quartis (Dispersão dos Preços)
+
+O Q1 (primeiro quartil) para carros com revisão é 20.46k mais alto, sugerindo que os 25% mais baratos dos carros com revisão em concessionária ainda são vendidos a preços mais elevados em comparação com os sem essa revisão.
+O Q3 (terceiro quartil) para carros com revisão é 40.56k maior. Isso significa que, até mesmo nos segmentos de preços mais altos, os carros com revisões em concessionárias ainda são negociados a valores superiores.
+
+Limites (Extremos dos Preços)
+
+O preço mínimo para carros com revisão é maior por 3.71k.
+O preço máximo para carros com revisão é menor por 219.7k. Este é um ponto interessante e poderia indicar que carros sem revisão em concessionárias, mas talvez com características especiais ou raridades, alcançam valores muito elevados no mercado.
+
+Análise de Revisão dentro da agenda: Mediana (Valor Central)
+
+Sem Revisão: 109.73k
+Com Revisão: 134.59k
+
+Observando as medianas, os carros com revisões feitas dentro da agenda têm uma mediana de preço 22.86k mais alta que os carros sem essas revisões. Isso indica que o valor central dos carros com revisões programadas é mais alto. O Q1 (primeiro quartil) para carros com revisões é 15.83k maior, indicando que 25% dos carros com revisões têm um preço acima de 89.73k, enquanto aqueles sem revisão têm preços acima de 73.90k. Curiosamente, o preço máximo para carros com revisão é significativamente menor (619.913k a menos). No entanto, é importante lembrar que outliers ou valores extremos podem ser influenciados por outros fatores, não apenas pela revisão.
+
+#### c) Relação entre o Número de Fotos e o Preço:
+
+Veículos que possuem um número de fotos acima da média (mais do que 10, que é a média fornecida) são vendidos a preços mais elevados do que os que possuem menos fotos. Justificativa: Um número maior de fotos pode indicar que o vendedor está mais engajado em vender o carro e está fornecendo detalhes abrangentes sobre o veículo. Isso pode transmitir mais confiança ao comprador potencial, permitindo que o vendedor defina um preço mais alto. Adicionalmente, veículos com características ou condições especiais (como interiores de alta qualidade ou customizações) podem ter mais fotos para destacar esses atributos.
+
+![impacto_num_fotos_preco](https://drive.google.com/uc?export=view&id=1OM3G6yMjuQz78w3YfDkE8onE_0YbtU-X)
+
+Análise Relação entre o número de fotos e o preço do veículo:
+
+    Mediana: Veículos com fotos abaixo ou igual à média têm uma mediana de preço mais alta (117.74k) em comparação com aqueles com fotos acima da média (107.15k).
+    Dispersion: A dispersão de preços (Q3 - Q1) é ligeiramente maior para veículos com fotos abaixo ou igual à média.
+    Valores extremos: Enquanto veículos com mais fotos têm um valor máximo mais elevado (1.359813M vs 1.15436M), veículos com menos fotos apresentam uma mediana de preço mais elevada.
+
+Contrário à hipótese inicial, veículos com um número de fotos abaixo ou igual à média tendem a ter preços medianos ligeiramente mais elevados do que aqueles com fotos acima da média. Embora possa parecer surpreendente à primeira vista, essa descoberta sugere que simplesmente ter mais fotos não é um forte indicativo de um preço mais alto.
+
+### Correlação
+
+{% highlight python %} df_numeric = df.query("Origem == 'treino'").select_dtypes(exclude=['object'])
+
+corr_matrix = df_numeric.corr()
+
+mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
+
+corr_masked = corr_matrix.mask(mask)
+
+fig = ff.create_annotated_heatmap(
+    reversescale=True,
+    z=corr_masked.to_numpy(),
+    x=list(corr_masked.columns),
+    y=list(corr_masked.index),
+    annotation_text=corr_masked.round(2).to_numpy(),
+    colorscale='Viridis',
+    showscale=True
+)
+fig.show() {% endhighlight %}
+
+![corr](https://drive.google.com/uc?export=view&id=1ARrM3iiuIADEmNKEHPFSjzcXfgfvc0vj)
+
+
+
+
+
 
 
 
